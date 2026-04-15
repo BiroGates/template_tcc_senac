@@ -63,11 +63,11 @@
 % ---------------------------------------------------------------
 % INFORMAÇÕES DO DOCUMENTO
 % ---------------------------------------------------------------
-\titulo{Título do Trabalho de Conclusão de Curso}
-\autor{Nome Completo do Aluno}
+\titulo{Análise de Impacto no Tempo de Renderização de um Ray Tracer Utilizando as Estruturas de Particionamento Espacial BVH e KD-Tree}
+\autor{Gustavo Alves Vieira \\ Daniel Carvalho de Araujo}
 \local{São Paulo}
-\data{2025}
-\orientador{Prof. Nome do Orientador}
+\data{2026}
+\orientador{Prof. Me. Leonardo Massayuki Takuno}
 % \coorientador{Prof. Nome do Coorientador} % Descomente se houver coorientador
 
 \instituicao{%
@@ -75,12 +75,12 @@
   \par
   Unidade Santo Amaro
   \par
-  Curso de [Nome do Curso]
+  Curso de Ciencia da computação
 }
 
 \tipotrabalho{Trabalho de Conclusão de Curso I}
 
-\preambulo{Proposta de Trabalho de Conclusão de Curso apresentado ao SENAC Santo Amaro como requisito parcial para aprovação na disciplina de TCC1 do curso de [Nome do Curso].}
+\preambulo{Proposta de Trabalho de Conclusão de Curso apresentado ao SENAC Santo Amaro como requisito parcial para aprovação na disciplina de TCC1 do curso de Ciencia da Computação.}
 
 % ---------------------------------------------------------------
 % COMPILA O ÍNDICE
@@ -117,12 +117,12 @@
 % RESUMO
 % ---------------------------------------------------------------
 \begin{resumo}
-Este documento apresenta a proposta inicial do Trabalho de Conclusão de Curso (TCC1) desenvolvido no SENAC Santo Amaro. O objetivo deste trabalho é [descrever brevemente o objetivo principal do TCC]. A justificativa para este estudo baseia-se em [descrever brevemente a justificativa]. A revisão bibliográfica abrange [mencionar os principais tópicos]. Como solução proposta, pretende-se [descrever brevemente a solução]. Este trabalho está organizado em três capítulos que apresentam a introdução ao tema, a revisão bibliográfica que fundamenta a pesquisa, o desenvolvimento com a solução proposta e o cronograma de trabalho, seguidos das referências bibliográficas.
+Este documento apresenta a proposta inicial do Trabalho de Conclusão de Curso (TCC1) desenvolvido no SENAC Santo Amaro. O objetivo deste trabalho é realizar a comparação e análise do tempo de renderização de um Ray Trace utilizando estruturas de particionamento BVH e KD-Tree. A justificativa para este estudo baseia-se em medir a perfomance computacional ao escolher uma das estruturas de particionamento apresentadas, isso se faz necessário para descobrir a abordagem com menor custo computacional. A revisão bibliográfica abrange a analise do impacto no tempo de renderização ao escolher uma tecnica especifica de particionamento espacial. Como solução proposta, pretende-se implementar uma pequna pipeline de renderização utilizando-se ambas as tecnicas de particionamento e então comparar o impacto no tempo de processamento. Este trabalho está organizado em três capítulos que apresentam a introdução ao tema, a revisão bibliográfica que fundamenta a pesquisa, o desenvolvimento com a solução proposta e o cronograma de trabalho, seguidos das referências bibliográficas.
 
 \vspace{\onelineskip}
 
 \noindent
-\textbf{Palavras-chave}: palavra1. palavra2. palavra3. palavra4. palavra5.
+\textbf{Palavras-chave}: ray tracing. computação grafica. tracejo de raio.
 \end{resumo}
 
 % ---------------------------------------------------------------
@@ -157,7 +157,16 @@ Este documento apresenta a proposta inicial do Trabalho de Conclusão de Curso (
 \chapter{Introdução}
 \label{cap:introducao}
 
-A introdução deve apresentar o tema do trabalho de forma clara e objetiva, situando o leitor no contexto da pesquisa. Neste capítulo, são apresentados o contexto no qual o problema se insere, a justificativa para a realização do estudo e os objetivos que norteiam o desenvolvimento do trabalho.
+Simular fielmente cenários reais em telas 2D utilizando computadores é um desafio que acompanha a computação gráfica desde o início de seu estudo. 
+Adaptamos conceitos visuais realizando pequenos ajustes para que se torne possível de ter um resultado satisfatório em tela com o poder computacional limitado que temos. [Contextualização]
+
+O traçado de raios (ray tracing) é responsável por ajudar no sombreamento, reflexos e iluminação da cena e em calcular como os objetos renderizados em cena se comportam diante de uma fonte de luz externa, esse técnica é inspirada em como o olho humano enxerga, recebendo partículas de luz para a criação da imagem no cérebro humano, simular essa ocorrencia de luz nos computadores não é uma tarefa fácil, se quisessem calcular a incidência da uma fonte de luz sobre N objetos teríamos que disparar milhões de raios para todos os objetos da cena e calcular o quanto essa fonte de luz está afetando aquele determinado pixel.[Problematização].
+
+Ao invés de calcular milhões de raios disparados, invertemos por onde nossos raios são disparados e levamos em consideração os cálculos de apenas para onde nosso “olho” virtual está olhando, ou seja, reduzimos esse cálculo consideravelmente.[Problematização]
+
+Ainda sim, [Justificativa]
+
+tetes
 
 % ---------------------------------------------------------------
 \section{Contexto}
