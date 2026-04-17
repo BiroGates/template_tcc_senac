@@ -158,15 +158,14 @@ Este documento apresenta a proposta inicial do Trabalho de Conclusão de Curso (
 \label{cap:introducao}
 
 Simular fielmente cenários reais em telas 2D utilizando computadores é um desafio que acompanha a computação gráfica desde o início de seu estudo. 
-Adaptamos conceitos visuais realizando pequenos ajustes para que se torne possível de ter um resultado satisfatório em tela com o poder computacional limitado que temos. [Contextualização]
+Adaptamos conceitos visuais observados no mundo real e realizamos pequenos ajustes para que se torne possível de ter um resultado satisfatório em telas de computador com o poder computacional limitado que temos (ANDREW S. GLASSNER, 1998).
 
-O traçado de raios (ray tracing) é responsável por ajudar no sombreamento, reflexos e iluminação da cena e em calcular como os objetos renderizados em cena se comportam diante de uma fonte de luz externa, esse técnica é inspirada em como o olho humano enxerga, recebendo partículas de luz para a criação da imagem no cérebro humano, simular essa ocorrencia de luz nos computadores não é uma tarefa fácil, se quisessem calcular a incidência da uma fonte de luz sobre N objetos teríamos que disparar milhões de raios para todos os objetos da cena e calcular o quanto essa fonte de luz está afetando aquele determinado pixel.[Problematização].
+O traçado de raios (ray tracing) é responsável por ajudar no sombreamento, reflexos e iluminação da cena e em calcular como os objetos renderizados em cena se comportam diante de uma fonte de luz externa, esse técnica é uma "imitação" de como o olho humano processa particulas de luz, simular essa ocorrencia de luz nos computadores não é uma tarefa fácil, se quisessem calcular a incidência da uma fonte de luz sobre N objetos teríamos que disparar milhões de raios para todos os objetos da cena e calcular o quanto essa fonte de luz está afetando aquele determinado pixel.
 
-Ao invés de calcular milhões de raios disparados, invertemos por onde nossos raios são disparados e levamos em consideração os cálculos de apenas para onde nosso “olho” virtual está olhando, ou seja, reduzimos esse cálculo consideravelmente.[Problematização]
+Ao invés de calcular milhões de raios disparados, disparamos um quantidade menor de raios direto de um "olho" aritificial (uma camera por exemplo), e então a partir de onde esses raios atingiram na nossa cena realizamos o calculo para todas as fontes de luza disponiveis.
 
-Ainda sim, [Justificativa]
+Mesmo realizando essa inversão, o calculo de raios ainda demanda um pode computacional extramamente alto dependendo do quão fiel desejamos que a imagem gerada artificialmente seja. Analisar e estudar tecnicas como o BVH e KD-Tree nos ajudam a viabilizar cada vez mais imagems de maior qualidade com hardware limitado.
 
-tetes
 
 % ---------------------------------------------------------------
 \section{Contexto}
