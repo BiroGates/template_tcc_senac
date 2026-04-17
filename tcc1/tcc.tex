@@ -170,10 +170,15 @@ Mesmo realizando essa inversão, o calculo de raios ainda demanda um pode comput
 % ---------------------------------------------------------------
 \section{Contexto}
 \label{sec:contexto}
+A síntese de imagens em Computação Gráfica tem como um de seus maiores desafios a criação de uma imagem bidimensional que represente com realismo um mundo tridimensional. Nesse cenário, o ray tracing (traçado de raios) consolidou-se como uma técnica essencial
+devido à sua capacidade de simular fielmente o comportamento físico da luz, rastreando fenômenos complexos como reflexão, refração e sombras através de fótons virtuais. Para viabilizar essa simulação, o algoritmo padrão opera de forma reversa (backward ray tracing), traçando raios que partem do olho do observador (câmera), passam pelos pixels da tela e viajam em direção aos objetos da cena.Apesar do elevado nível de fotorrealismo proporcionado, o ray tracing esbarra em um problema estrutural crônico: o seu alto custo computacional. A base do algoritmo exige que se pergunte repetidamente "qual objeto este raio atinge?". 
+Como demonstrado em literaturas fundamentais da área, como o artigo Ray Tracing in One Weekend, a abordagem ingênua que calcula a interseção de um raio contra uma lista não estruturada contendo todos os objetos geométricos da cena é extremamente custosa e impraticável para cenários de média a alta densidade.Indicadores, Lacunas e o Domínio do ProblemaÉ neste domínio — a otimização da travessia de raios e a redução geométrica do ambiente virtual — que a ineficiência do modelo básico se manifesta. O gargalo se intensifica porque o custo computacional e o número de testes de interseção crescem drasticamente conforme a complexidade da cena e o número de primitivas geométricas aumentam.
 
-Apresente o cenário que originou o problema, ressaltando fatos, indicadores e lacunas identificadas na área de estudo. O contexto deve situar o leitor sobre o estado atual do tema, mostrando a relevância do assunto para a Computação e para a sociedade.
 
-Descreva o ambiente ou domínio em que o problema ocorre, utilizando dados e referências que comprovem a existência do problema. Explique quem são os principais afetados e quais são as consequências de não resolvê-lo.
+Para suprir essa lacuna e viabilizar a técnica, a área de estudo adotou estruturas de aceleração baseadas em particionamento espacial, sendo o BVH (Bounding Volume Hierarchy) e a KD-Tree duas das abordagens mais proeminentes. A lacuna de pesquisa atual reside na necessidade de análises empíricas e controladas que avaliem como diferentes cenários de complexidade geométrica, o tempo gasto na construção dessas estruturas (pré-processamento) e a profundidade das árvores influenciam, na prática, o custo computacional geral e a redução do tempo total de renderização.Afetados, Consequências e RelevânciaOs impactos desse gargalo de desempenho não se restringem à academia. Os principais afetados são os setores industriais que dependem diretamente de ambientes virtuais de alta fidelidade, como estúdios de cinema, empresas de efeitos visuais (VFX), desenvolvedores de jogos eletrônicos, projetistas arquitetônicos e pesquisadores de simulações médicas.
+
+A consequência de ignorar ou não mitigar esse problema é severa: sem estruturas de aceleração altamente otimizadas, a interatividade e a geração de gráficos fotorrealistas em tempo real tornam-se virtualmente impossíveis. Além disso, o alto processamento e consumo de recursos de memória (CPU/RAM) resultam em custos operacionais e energéticos exorbitantes com gigantescas fazendas de renderização (render farms).
+Dessa forma, a relevância desta pesquisa empírica para a Computação e para a sociedade é indiscutível. Ao comparar o comportamento computacional do BVH e da KD-Tree no controle do fluxo de interseções de raios com objetos , o estudo propiciará um embasamento prático essencial para desenvolvedores de motores gráficos na tomada de decisão arquitetural. Otimizar algoritmos de síntese de imagens colabora diretamente para processos industriais mais rápidos e para a democratização da computação visual de alto nível.
 
 \vspace{0.3cm}
 \noindent\fbox{\parbox{\dimexpr\textwidth-2\fboxsep-2\fboxrule}{%
@@ -213,16 +218,13 @@ A revisão bibliográfica não consiste em simplesmente listar os trabalhos enco
 \section{Justificativa}
 \label{sec:justificativa}
 
-Explicite por que resolver esse problema é importante. A justificativa deve abordar:
+Este trabalho contribui para a literatura de Computação Gráfica e Estruturas de Dados ao fornecer uma avaliação empírica e rigorosa sobre a eficiência algorítmica no traçado de raios. Embora a base matemática e óptica do ray tracing seja amplamente conhecida , a compreensão profunda de como diferentes métodos de particionamento espacial otimizam a travessia de raios permite avanços no estudo da complexidade de algoritmos. Ao implementar e mensurar o comportamento do BVH e da KD-Tree em C++ , a pesquisa gera dados concretos sobre a escalabilidade geométrica, fomentando discussões acadêmicas sobre o balanço entre o custo de construção de estruturas de dados e o tempo de execução.
 
-\begin{itemize}
-    \item \textbf{Relevância acadêmica}: como este trabalho contribui para o avanço do conhecimento na área;
-    \item \textbf{Relevância prática/profissional}: quais benefícios práticos a solução trará para usuários, organizações ou a sociedade;
-    \item \textbf{Lacuna identificada}: o que ainda não foi resolvido ou explorado suficientemente pelos trabalhos existentes.
-\end{itemize}
 
-Mostre que o trabalho não é apenas um texto sobre um tema popular, mas sim uma proposta que visa preencher uma lacuna real e contribuir de forma significativa para a área.
+Em aplicações industriais — como produção de efeitos visuais (VFX), desenvolvimento de jogos eletrônicos, simulações físicas e visualização arquitetônica —, o tempo de renderização traduz-se diretamente em custos de infraestrutura e consumo de recursos (CPU/RAM). Ao comparar o desempenho prático de estruturas de aceleração , este estudo entregará diretrizes claras para desenvolvedores de software e engenheiros gráficos na tomada de decisão sobre qual técnica empregar. A redução da quantidade de testes de interseção  resulta em render farms mais eficientes e em fluxos de trabalho mais ágeis para artistas digitais, que dependem de iterações rápidas para avaliar a iluminação e os materiais de suas cenas.
 
+
+Apesar de guias fundamentais da área (como a série Ray Tracing in One Weekend) e livros clássicos introduzirem a importância das estruturas de aceleração para evitar a complexidade linear da força bruta, existe uma carência de estudos recentes focados na comparação direta, controlada e isolada dos trade-offs entre o BVH e a KD-Tree. Grande parte dos projetos foca na implementação de novos efeitos visuais (física de superfícies, motion blur, etc.), assumindo a estrutura de dados como uma "caixa preta". O que ainda não foi suficientemente explorado na prática é a investigação pormenorizada de como variáveis isoladas — como o número de objetos, a profundidade das árvores topológicas e o tempo gasto na construção prévia das estruturas — afetam o tempo de renderização em diferentes topologias de cenas tridimensionais. Este TCC preenche essa lacuna ao isolar o algoritmo e monitorar detalhadamente as métricas de desempenho sob essas condições
 % ---------------------------------------------------------------
 \section{Objetivo}
 \label{sec:objetivo}
